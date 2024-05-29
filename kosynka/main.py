@@ -12,8 +12,9 @@ screen = pygame.display.set_mode(size)  # Создаем окно игры с з
 backgr=pygame.image.load("assets/background.png")
 screen.blit(backgr,(0,0))  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
-pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")
-pygame.mixer.music.play(-1)
+pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3") # Загрузка музыки
+pygame.mixer.music.play(-1) # Зацикленное проигрывание музыки
+pygame.time.Clock().tick(60) # Ограничение на 60 кадров в секунду для экономии заряда
 
 # Загрузка изображений карт
 def load_card_images():
