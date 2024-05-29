@@ -279,11 +279,10 @@ def show_victory_screen(screen):
     return button_rect
 
 def draw_restart_button():
-    font = pygame.font.Font(None, 36)
-    text = font.render("Новая игра", True, (0, 0, 0))
-    button_rect = pygame.Rect(750,70,150,50)
+    button_rect = pygame.Rect(750, 70, 150, 50)
     rest_btt = pygame.image.load("assets/restart_button.png")
-    screen.blit(rest_btt, (750,70))
+    screen.blit(rest_btt, (750, 70))
+    pygame.display.flip()
     return button_rect
 
 # Функция для проверки победы
@@ -345,6 +344,8 @@ while True:
         elif event.type == pygame.MOUSEMOTION:
             if selected_cards or selected_deck_card or selected_foundation_card:
                 mouse_x, mouse_y = event.pos
+
+    screen.blit(backgr,(0,0))  # Отрисовка фона
 
     # Отрисовка колоды и стопки вытянутых карт
     deck.draw(screen, (50, 50))
