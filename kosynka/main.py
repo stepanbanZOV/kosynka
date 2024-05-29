@@ -95,8 +95,6 @@ class Foundation:
         x, y = pos  # Позиция для рисования базовой стопки
         if self.cards:  # Если в стопке есть карты
             self.cards[-1].draw(screen, (x, y))  # Рисуем верхнюю карту в стопке
-        else:  # Если стопка пуста
-            pygame.draw.rect(screen, (255, 255, 255), (x, y, back_image.get_width(), back_image.get_height()), 2)  # Рисуем пустую стопку
 
 # Класс для представления колоды карт
 class Deck:
@@ -111,8 +109,6 @@ class Deck:
         if self.cards:  # Если в колоде есть карты
             back_image_rect = back_image.get_rect(topleft=(x, y))  # Получаем прямоугольник изображения обратной стороны карты
             screen.blit(back_image, back_image_rect)  # Рисуем обратную сторону карты
-        else:  # Если колода пуста
-            pygame.draw.rect(screen, (255, 255, 255), (x, y, back_image.get_width(), back_image.get_height()), 2)  # Рисуем пустую колоду
 
     def draw_card(self):
         if self.cards:  # Если в колоде есть карты
