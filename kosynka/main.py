@@ -12,25 +12,19 @@ screen = pygame.display.set_mode(size)  # Создаем окно игры с з
 backgr=pygame.image.load("assets/background.png")
 screen.blit(backgr,(0,0))  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
-pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3") # Загрузка музыки
-pygame.mixer.music.play(-1) # Зацикленное проигрывание музыки
-pygame.time.Clock().tick(60) # Ограничение на 60 кадров в секунду для экономии заряда
+pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")  # Загрузка музыки
+pygame.mixer.music.play(-1)  # Зацикленное проигрывание музыки
+pygame.time.Clock().tick(60)  # Ограничение на 60 кадров в секунду для экономии заряда
 
 # Загрузка изображений карт
-def load_card_images():
-    card_images = {}  # Словарь для хранения изображений карт
-    suits = ['hearts', 'diamonds', 'clubs', 'spades']  # Масти карт
-    values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']  # Значения карт
-
-    for suit in suits:  # Для каждой масти
-        for value in values:  # Для каждого значения
-            card_name = f"{value}_of_{suit}"  # Имя файла с изображением карты
-            image_path = os.path.join('assets', 'cards', f"{card_name}.png")  # Путь к файлу изображения
-            card_images[card_name] = pygame.image.load(image_path)  # Загрузка изображения карты в словарь
-
-    return card_images  # Возвращаем словарь с изображениями карт
-
-card_images = load_card_images()  # Загружаем изображения карт
+card_images = {}  # Словарь для хранения изображений карт
+suits = ['hearts', 'diamonds', 'clubs', 'spades']  # Масти карт
+values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']  # Значения карт
+for suit in suits:  # Для каждой масти
+    for value in values:  # Для каждого значения
+        card_name = f"{value}_of_{suit}"  # Имя файла с изображением карты
+        image_path = os.path.join('assets', 'cards', f"{card_name}.png")  # Путь к файлу изображения
+        card_images[card_name] = pygame.image.load(image_path)  # Загрузка изображения карты в словарь
 
 # Загрузка изображения обратной стороны карты
 back_image = pygame.image.load(os.path.join('assets', 'cards', 'back.png'))  # Загружаем изображение обратной стороны карты
@@ -123,13 +117,10 @@ class Deck:
 
 
 # Подготовка колоды и раздача карт по столбцам
-columns = [Column() for _ in range(7)]
-foundations = [Foundation() for _ in range(4)]
+columns = [Column() for i in range(7)]
+foundations = [Foundation() for i in range(4)]
 deck = Deck()
 draw_pile = []
-
-suits = ['hearts', 'diamonds', 'clubs', 'spades']
-values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']
 colors = {'hearts': 'red', 'diamonds': 'red', 'clubs': 'black', 'spades': 'black'}
 deck.cards = [Card(f"{value}_of_{suit}", card_images[f"{value}_of_{suit}"], values.index(value) + 1, suit, colors[suit])
               for suit in suits for value in values]
@@ -255,9 +246,6 @@ def handle_mouse_button_up(mouse_x, mouse_y):
         selected_foundation_card = None  # Сбрасываем выбранную карту из базовой стопки
         selected_foundation = None  # Сбрасываем выбранную базовую стопку
 
-import pygame
-import sys
-
 # Функция для отображения победного экрана
 def show_victory_screen(screen):
     vict_scr = pygame.image.load("assets/victory_screen.png")
@@ -268,6 +256,7 @@ def show_victory_screen(screen):
     pygame.display.flip()
     return button_rect
 
+# Функция для отрисовки кнопки перезапуска игры
 def draw_restart_button():
     button_rect = pygame.Rect(750, 70, 150, 50)
     rest_btt = pygame.image.load("assets/restart_button.png")
