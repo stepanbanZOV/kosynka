@@ -7,11 +7,14 @@ import random  # Импортируем модуль random для случай�
 pygame.init()  # Инициализируем все модули Pygame
 
 # Параметры окна
-size = width, height = 960, 720  # Размеры окна игры
+size = 960, 720  # Размеры окна игры
 screen = pygame.display.set_mode(size)  # Создаем окно игры с заданными размерами
+backgr=pygame.image.load("assets/background.png")
+bg_size=backgr.get_rect(bottomright=size)
+screen.blit(backgr,bg_size)  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
-pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")
-pygame.mixer.music.play(-1)
+pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")  # Загружаем музыку
+pygame.mixer.music.play(-1)  # Зацикливаем музыку
 
 # Загрузка изображений карт
 def load_card_images():
