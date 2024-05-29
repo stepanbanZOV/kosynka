@@ -10,7 +10,8 @@
 Ссылка на демонстрацию игры (Youtube): https://youtu.be/IblSdYHVSkY
 
 
-![image](https://github.com/stepanbanZOV/kosynka/assets/170885651/597e1987-3346-4526-905b-3dd26ea449d1)
+![image](https://github.com/stepanbanZOV/kosynka/assets/170885651/42995969-be34-4e33-a90e-14de5983f927)
+
 
 
 
