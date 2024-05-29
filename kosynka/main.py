@@ -9,6 +9,8 @@ pygame.init()  # Инициализируем все модули Pygame
 # Параметры окна
 size = width, height = 960, 720  # Размеры окна игры
 screen = pygame.display.set_mode(size)  # Создаем окно игры с заданными размерами
+backgr=pygame.image.load("assets/background.png")
+screen.blit(backgr,(0,0))  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
 pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")
 pygame.mixer.music.play(-1)
@@ -279,9 +281,9 @@ def show_victory_screen(screen):
 def draw_restart_button():
     font = pygame.font.Font(None, 36)
     text = font.render("Новая игра", True, (0, 0, 0))
-    button_rect = pygame.Rect(760,80,150,50)
-    pygame.draw.rect(screen, (200, 200, 200), button_rect)
-    screen.blit(text, (760,80))
+    button_rect = pygame.Rect(750,70,150,50)
+    rest_btt = pygame.image.load("assets/restart_button.png")
+    screen.blit(rest_btt, (750,70))
     return button_rect
 
 # Функция для проверки победы
@@ -343,8 +345,6 @@ while True:
         elif event.type == pygame.MOUSEMOTION:
             if selected_cards or selected_deck_card or selected_foundation_card:
                 mouse_x, mouse_y = event.pos
-
-    screen.fill((0, 128, 0))
 
     # Отрисовка колоды и стопки вытянутых карт
     deck.draw(screen, (50, 50))
