@@ -7,13 +7,11 @@ import random  # Импортируем модуль random для случай�
 pygame.init()  # Инициализируем все модули Pygame
 
 # Параметры окна
-size = 960, 720  # Размеры окна игры
+size = width, height = 960, 720  # Размеры окна игры
 screen = pygame.display.set_mode(size)  # Создаем окно игры с заданными размерами
-backgr=pygame.image.load("assets/background.png")
-screen.blit(backgr,(0,0))  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
-pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")  # Загружаем музыку
-pygame.mixer.music.play(-1)  # Зацикливаем музыку
+pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")
+pygame.mixer.music.play(-1)
 
 # Загрузка изображений карт
 def load_card_images():
@@ -278,6 +276,14 @@ def show_victory_screen(screen):
 
     return button_rect
 
+def draw_restart_button():
+    font = pygame.font.Font(None, 36)
+    text = font.render("Новая игра", True, (0, 0, 0))
+    button_rect = pygame.Rect(760,80,150,50)
+    pygame.draw.rect(screen, (200, 200, 200), button_rect)
+    screen.blit(text, (760,80))
+    return button_rect
+
 # Функция для проверки победы
 def check_victory(foundations):
     return all(len(foundation.cards) == 13 for foundation in foundations)
@@ -338,7 +344,7 @@ while True:
             if selected_cards or selected_deck_card or selected_foundation_card:
                 mouse_x, mouse_y = event.pos
 
-    screen.fill((0, 128, 32))
+    screen.fill((0, 128, 0))
 
     # Отрисовка колоды и стопки вытянутых карт
     deck.draw(screen, (50, 50))
@@ -398,4 +404,25 @@ while True:
             else:
                 continue  # Это позволяет остаться в этом внутреннем цикле, если не нажата кнопка "Новая игра"
             break  # Выйти из внутреннего цикла, если нажата кнопка "Новая игра"
+
+     # Обработка кнопки перезапуска игры
+    restart = draw_restart_button()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        if restart.collidepoint(event.pos):
+            # Начать новую игру
+            deck = Deck()
+            columns = [Column() for _ in range(7)]
+            foundations = [Foundation() for _ in range(4)]
+            draw_pile = []
+            deck.cards = [
+                Card(f"{value}_of_{suit}", card_images[f"{value}_of_{suit}"], values.index(value) + 1, suit,
+                     colors[suit]) for suit in suits for value in values]
+            random.shuffle(deck.cards)
+            for i in range(7):
+                for j in range(i + 1):
+                    card = deck.cards.pop()
+                    if j == i:
+                        card.face_up = True
+                    columns[i].add_card(card)
+
     pygame.display.flip()
