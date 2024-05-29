@@ -10,8 +10,7 @@ pygame.init()  # Инициализируем все модули Pygame
 size = 960, 720  # Размеры окна игры
 screen = pygame.display.set_mode(size)  # Создаем окно игры с заданными размерами
 backgr=pygame.image.load("assets/background.png")
-bg_size=backgr.get_rect(bottomright=size)
-screen.blit(backgr,bg_size)  # Загрузка фона
+screen.blit(backgr,(0,0))  # Загрузка фона
 pygame.display.set_caption("Pasjans Kosynka")  # Устанавливаем заголовок окна
 pygame.mixer.music.load("Pasjans-Kosynka-OST-Glimmer.mp3")  # Загружаем музыку
 pygame.mixer.music.play(-1)  # Зацикливаем музыку
