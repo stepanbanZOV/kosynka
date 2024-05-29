@@ -263,19 +263,12 @@ import sys
 
 # Функция для отображения победного экрана
 def show_victory_screen(screen):
-    screen.fill((0, 128, 0))
-    font = pygame.font.Font(None, 74)
-    text = font.render("You Win!", True, (255, 255, 255))
-    screen.blit(text, (150, 200))
-
-    font = pygame.font.Font(None, 36)
-    button_text = font.render("New Game", True, (255, 255, 255))
-    button_rect = pygame.Rect(150, 300, 200, 50)
-    pygame.draw.rect(screen, (0, 0, 0), button_rect)
-    screen.blit(button_text, (button_rect.x + 50, button_rect.y + 10))
-
+    vict_scr = pygame.image.load("assets/victory_screen.png")
+    screen.blit(vict_scr, (0, 0))
+    button_rect = pygame.Rect(320, 420, 320, 160)
+    ng_btt = pygame.image.load("assets/new_game_button.png")
+    screen.blit(ng_btt, (320, 420))
     pygame.display.flip()
-
     return button_rect
 
 def draw_restart_button():
