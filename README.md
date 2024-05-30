@@ -7,7 +7,7 @@
 ## Демонстрация игры
 
 
-Ссылка на демонстрацию игры (Youtube): https://youtu.be/IblSdYHVSkY
+Ссылка на демонстрацию игры (Youtube): https://youtu.be/GChgAz7JR_Q
 
 
 ![image](https://github.com/stepanbanZOV/kosynka/assets/170885651/3aed068a-0cfb-4a9e-9eb3-5f054c13af5b)
